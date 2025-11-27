@@ -16,6 +16,9 @@ exports.up = function(knex) {
           .defaultTo("OWNER");
 
       table.timestamp("created_at").notNullable().defaultTo(knex.fn.now());
+
+      //Pra garantir que não vai duplicar
+      table.unique(["user_id", "restaurant_id"]);
   });
 };
 
